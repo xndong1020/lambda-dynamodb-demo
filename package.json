@@ -1,0 +1,15 @@
+{
+  "name": "lambda-dynamodb-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "locally": "node ./locally.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.445.0"
+  }
+}
