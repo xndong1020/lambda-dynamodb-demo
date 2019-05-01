@@ -2,7 +2,6 @@
 const AWS = require('aws-sdk')
 // Set the region
 AWS.config.update({ region: 'ap-southeast-2' })
-const docClient = new AWS.DynamoDB.DocumentClient({ apiVersion: '2012-08-10' })
 
 exports.handler = async event => {
   const { _id } = event
@@ -16,10 +15,11 @@ exports.handler = async event => {
 
   const params = {
     TableName: 'acmjobs',
-    Key: { _id }
+    Key: { _id },
   }
 
   try {
+    const docClient = new AWS.DynamoDB.DocumentClient()
     const result = await docClient.get(params).promise()
     response.statusCode = 200
     response.body = result

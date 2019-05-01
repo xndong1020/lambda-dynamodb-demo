@@ -4,12 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "locally": "node ./locally.js"
+    "locally": "node ./src/locally.js",
+    "test": "nyc mocha -R spec ./src/**/*.test.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.445.0"
+    "aws-sdk": "^2.446.0"
+  },
+  "devDependencies": {
+    "aws-sdk-mock": "^4.4.0",
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4",
+    "nyc": "^14.0.0",
+    "sinon": "^7.3.2",
+    "sinon-chai": "^3.3.0"
   }
 }
