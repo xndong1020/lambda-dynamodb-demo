@@ -20,9 +20,6 @@ describe(`Unit test handler from index`, () => {
   })
 
   it(`docClient.get method should be called with correct params`, done => {
-    AWS.restore('DynamoDB')
-    AWS.restore('DynamoDB.DocumentClient')
-
     const getQuerySpy = sinon.spy()
     AWS.mock('DynamoDB.DocumentClient', 'get', getQuerySpy)
 
@@ -39,26 +36,21 @@ describe(`Unit test handler from index`, () => {
   })
 
   it(`should return response if DocumentClient returns response`, async () => {
-    AWS.restore('DynamoDB')
     AWS.restore('DynamoDB.DocumentClient')
 
     AWS.mock('DynamoDB.DocumentClient', 'get', Promise.resolve(`Fake response`))
 
     try {
       const result = await handler({ _id: '123456' })
-      expect(result)
-        .to.have.property('statusCode')
-        .to.equal(200)
-      expect(result)
-        .to.have.property('body')
-        .to.equal('Fake response')
+      expect(result).to.exist
+      expect(result.statusCode).to.equal(200)
+      expect(result.body).to.equal('Fake response')
     } catch (err) {
       expect(err).to.not.exist
     }
   })
 
   it(`should return error message if DocumentClient returns error`, async () => {
-    AWS.restore('DynamoDB')
     AWS.restore('DynamoDB.DocumentClient')
 
     AWS.mock(
